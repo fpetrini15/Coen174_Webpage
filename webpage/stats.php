@@ -42,9 +42,11 @@ function checkDB($event){
 		// We can use either numeric indexed starting at 0 
 		// or the column name as an associative array index to access the colum value
 		// Use the uppercase column names for the associative array indices		
-		echo "<font color='green'> $row[0] </font></br>";
-		echo "<font color='green'> $row[1] </font></br>";
-		echo "<font color='green'> $row[2] </font></br>";
+		echo "<font size=6><strong>Event Report</strong></font>";
+		echo "</br>----------------------------------------------";		
+		echo "<font color='black' size=5> <pre> <strong>Event Name</strong>:\t$row[0] </pre> </font>";
+		echo "<font color='black' size=5> <pre> <strong>Location</strong>:\t$row[1] </pre> </font>";
+		echo "<font color='black' size=5> <pre> <strong>Attendance</strong>:\t$row[2] </pre> </font>";
 	}
     oci_free_statement($stmt);
 	
