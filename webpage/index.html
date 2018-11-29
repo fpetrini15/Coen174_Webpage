@@ -27,20 +27,6 @@
 
   <body>
 
-    <script type="text/javascript">
-    $(document).ready(function () {
-        $('#checkBtn').click(function() {
-          checked = $("input[type=checkbox]:checked").length;
-
-          if(!checked) {
-            alert("You must check at least one checkbox.");
-            return false;
-          }
-
-        });
-    });
-
-    </script>
 
     <!-- Masthead -->
     <header class="masthead text-white text-center">
@@ -121,7 +107,7 @@
           <div class="col-lg-6 my-auto showcase-text">
             <h2>SCU Alumni</h2>
             <p class="lead mb-0">To request an event from the Alumni Office please click the button below.</p>
-            <a class="btn btn-primary" href="#Alumni">Fill Out Request Form</a>
+            <a class="btn btn-primary" href="alumniRequestForm.html">Fill Out Request Form</a>
           </div>
         </div>
          <element id = "Guest">
@@ -157,11 +143,15 @@
               <div class="form-row">
                   <div class="col-12 col-md-9 mb-2 mb-md-0">
                     <fieldset>
+                    <input type="text" class="form-control form-control-lg" placeholder="Event Name" name="e_name" id="e_name">
+                    <p>Please enter it as it appears on the calendar<p>
                     <input type="text" class="form-control form-control-lg" placeholder="First name (e.g. Joe)" name="first" id="first">
                     <br>
                     <input type="text" class="form-control form-control-lg" placeholder="Last name (e.g. Smith)" name="last" id="last">
                     <br>
                     <input type="text" class="form-control form-control-lg" placeholder="Graduation Year (e.g. 1964)" name="year" id="year">
+                    <br>
+                    <input type="text" class="form-control form-control-lg" placeholder="Major (e.g. Computer Engineering)" name="major" id="major">
                     <br>
                     <input type="email" class="form-control form-control-lg" placeholder="Email (e.g. jsmith@scu.edu)" name="email" id="email">
                     <br>

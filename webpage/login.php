@@ -34,79 +34,23 @@ function verifyCredentials($uname, $psw){
         exit;
    }     
     //NEED QUERY!
-    $query = oci_parse($conn, "SELECT * FROM Credentials WHERE username = :uname and password = :psw");
-   
-   oci_bind_by_name($query, ':uname', $uname);
-   oci_bind_by_name($query, ':psw',  $psw);
+   $uname = hash('sha256', (get_magic_quotes_gpc() ? stripslashes($uname) : $uname));
+   $psw = hash('sha256', (get_magic_quotes_gpc() ? stripslashes($psw) : $psw));
+ 
+   $query = oci_parse($conn, "SELECT * FROM AUTHENTICATION WHERE USERNAME = '$uname' and PASSWORD = '$psw'");
 
    oci_execute($query);
    if (($row = oci_fetch_array($query, OCI_BOTH)) != false) {     
       // We can use either numeric indexed starting at 0 
       // or the column name as an associative array index to access the colum value
-      // Use the uppercase column names for the associative array indices     
-      header("Location: http://francescogpetrini.com");
+      // Use the uppercase column names for the associative array indices  
+      echo("Successful");
+      header("Location: http://linux.students.engr.scu.edu/~fpetrini/webpage/D25399744FBDF017C51C134BA09003AC2F24598889C78249C074F0D0787EF6C1/auth_selection.html");
       exit;
    
    }
-?>
-   <html>
-   <button onclick="goBack()">Go Back</button>
-      <script>
-      function goBack() {
-          window.history.back();
-      }
-      </script>
-   </html>
-<?php
-   echo("Login unsuccessful");
-   OCILogoff($conn); 
+   header("Location: http://linux.students.engr.scu.edu/~fpetrini/webpage/D25399744FBDF017C51C134BA09003AC2F24598889C78249C074F0D0787EF6C1/unsuccessful.html");
 }
 ?>
 
 
-<html>
-   
-   <head>
-      <title>Login Page</title>
-      
-      <style type = "text/css">
-         body {
-            font-family:Arial, Helvetica, sans-serif;
-            font-size:14px;
-         }
-         label {
-            font-weight:bold;
-            width:100px;
-            font-size:14px;
-         }
-         .box {
-            border:#666666 solid 1px;
-         }
-      </style>
-      
-   </head>
-   
-   <body bgcolor = "#FFFFFF">
-	
-      <div align = "center">
-         <div style = "width:300px; border: solid 1px #333333; " align = "left">
-            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
-				
-            <div style = "margin:30px">
-               
-               <form action = "" method = "post">
-                  <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
-                  <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-                  <input type = "submit" value = " Submit "/><br />
-               </form>
-               
-               <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-					
-            </div>
-				
-         </div>
-			
-      </div>
-
-   </body>
-</html>
