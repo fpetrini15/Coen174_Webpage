@@ -1,3 +1,8 @@
+// Description:
+// Takes google form submission and adds it to a Google Calendar
+// This is used by the Alumni office staff to add events to
+// the event calendar from the website.
+
 //Load the library once
 var moment = Moment.load();
 
